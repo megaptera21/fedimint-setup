@@ -216,6 +216,13 @@ Dazu in `/etc/ssh/sshd_config` den Wert `PermitRootLogin no` setzen, dann
 sudo systemctl restart ssh
 ```
 
+Weitere Optionen für die Härtung von SSH (Einträge in sshd_config):
+
+- SSH Verbindung trennen sofern man längere Zeit inaktiv ist: `ClientAliveInterval 300` (Angabe in Anzahl Sekunden)
+- SSH Verbindung nur für gewisse Benutzer zulassen: `AllowUsers User1 User2`  oder `AllowGroups ssh_group` falls die Benutzer in Gruppen sind
+
+Grundsätzlich sollte man SSH Zugriff aus dem Internet verhindern falls dies möglich ist. (Nur aus internem Netz oder VPN Verbindung)
+
 ### Schritt 2 ufw Firewall einrichten
 
 So wird die Firewall `ufw` aktiviert, wenn sie nicht bereits aktiv ist. Die Grundeinstellung ist, dass alle Port geschlossen sind und die Ports, die benötigt werden per Eingabe geöffnet werden müssen. Vorsicht: das Port 22 muss auf jeden fall geöffnet werden, bevor die Firewall aktiviert wird, ansonsten habt ihr euch ausgeschlossen. Der Remote-Zugriff auf die Konsole findet immer per SSH auf Port 22 statt. 
